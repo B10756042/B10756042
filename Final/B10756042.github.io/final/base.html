@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Bootstrap CSS -->
+   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
+ 
+   <title>{%block head_title %}title{% endblock %}</title>
+  <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        font-family: "Comic Sans MS";
+    }
+    #menu_control {
+        position: absolute;
+        z-index: -2;
+        opacity: 0;
+    }
+    
+    .header {
+        height: 80px;
+        background-color: #ebedec;
+        /*縮小後上方顏色*/
+        position: relative;
+        
+    }
+    
+    .logo {
+        width: 500px;
+        height: 70px;
+        margin-left: 30px;
+        font-size: 50px;
+        
+
+    }
+    
+    .menu_btn {
+        width: 40px;
+        height: 40px;
+        /*background-color: white;*/
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+    
+    .menu_btn span {
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+        display: block;
+        overflow: hidden;
+    }
+    
+    .menu_btn::before {
+        content: " ";
+        position: absolute;
+        height: 2px;
+        left: 2px;
+        width: 36px;
+        background-color: blueviolet;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        box-shadow: 0px 8px 0px blueviolet, 0px -8px 0px blueviolet;
+    }
+    
+    nav {
+        width: 100%;
+        height: calc(100vh-50px);
+        background-color: #a59bfa;
+        /*漢堡式選單色*/
+        position: absolute;
+        top: 50px;
+        left: -120%;
+        transition: .5s;
+    }
+    
+    nav a {
+        display: block;
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        padding: 10px 20px;
+        border-bottom: 1px solid white;
+        font-family: "Comic Sans MS";
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    nav a:hover {
+        background-color: #698cb5
+    }
+    
+    #menu_control:checked~.header nav {
+        left: 0;
+    }
+    
+    marquee {
+        color: rgba(255, 255, 255, 0)
+    }
+    
+    .footer {
+        background-color: #333;
+        color: #aaa;
+        text-align: center;
+        padding: 10px 0;
+    }
+    
+    .two {
+        margin: 60px 0;
+    }
+    
+    img {
+        vertical-align: bottom;
+    }
+    
+    .group {
+        width: 100%;
+        margin: auto;
+    }
+    
+    .item {
+        margin: 0 10px 40px;
+    }
+    
+    .bg img {
+        width: 0%;
+    }
+    
+    .bn img {
+        width: 100%;
+    }
+    
+    .title h3 {
+        text-align: center;
+        font-size: 28px;
+        font-family: "Microsoft JhengHei"
+    }
+    
+    .title {
+        margin: 0 0px 10px;
+        padding: 20px 10px;
+        background-color: #aaa;
+        background-image: url('https://B10756042.github.io/Final/B10756042.github.io/final/photo/ocean.jpg');
+        background-size: 2000px;
+        
+    }
+
+  
+    .button {
+        background-color: rgb(144, 165, 187);
+        border: none;
+        color: white;
+        padding: 12px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .button1 {
+        background-color: rgb(144, 165, 187);
+        border: none;
+        color: white;
+        padding: 12px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .button2 {
+        background-color: rgb(144, 165, 187);
+        border: none;
+        color: white;
+        padding: 12px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .button3 {
+        background-color: rgb(144, 165, 187);
+        border: none;
+        color: white;
+        padding: 12px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .item .text img {
+      width: 53px;
+      height: 22px;
+    }
+    
+    .title p {
+        font-size: 15px;
+        text-align: center;
+        font-family: "Microsoft JhengHei"
+    }
+    
+    .item .text h3 {
+        font-size: 30px;
+        text-align: center;
+    }
+    
+    .item .text h6 {
+        text-align: center;
+    }
+    
+    .item .pic img {
+      width: 100%;
+  height: auto;
+    }
+    
+    .item .pic {
+        overflow: hidden;
+    }
+    
+    .item .pic img:hover {
+        transform: scale(1.2, 1.2);
+    }
+    
+    .footer img {
+        width: 3.5%;
+    }
+    
+    .footer p {
+        color: white;
+    }
+    
+    .text p {
+        text-align: center;
+        font-size: 22px;
+        font-family: "Microsoft JhengHei";
+        font-weight: bold;
+        color: rgb(27, 19, 54);
+    }
+    
+    .text {
+        background-color: rgb(144, 165, 187);
+    }
+    
+    @media screen and (min-width: 680px) {
+        .menu_btn {
+            display: none;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #b3d1ff;
+            align-items: center;
+        }
+        nav {
+            position: relative;
+            left: 0;
+            display: flex;
+            width: auto;
+            height: auto;
+            top: 0;
+            background-color: transparent;
+        }
+        nav a {
+            border-bottom: none;
+        }
+        nav a:hover {
+            background-color: #b3d1ff;
+            color: rgb(43, 43, 250);
+        }
+        marquee {
+            color: #616130
+        }
+        .group {
+            display: flex;
+        }
+        .title h3 {
+            text-align: center;
+            font-size: 50px;
+        }
+        .title p {
+            font-size: 22px;
+            text-align: center;
+        }
+        .bg img {
+            width: 100%;
+        }
+        .bn img {
+            width: 100%;
+            display: none;
+        }
+        .item .pic img {
+            width: 100%;
+        }
+        .footer img {
+            width: 1.6%;
+        }
+    }
+</style>
+
+</head>
+<body >
+  <input type="checkbox" name="" id="menu_control">
+  <div class="header">
+      <h1 class="logo">
+          <a>MIS 智慧養殖系統</a>
+      </h1>
+      <label for="menu_control" class="menu_btn">
+          <span>選單</span>
+      </label>
+      <nav>
+          <a href="https://B10756042.github.io/Final/B10756042.github.io/final/videos.html">Home</a>
+          <a href="https://B10756042.github.io/Final/B10756042.github.io/final/videos.html">影片列表</a>
+          <a href="https://B10756042.github.io/Final/B10756042.github.io/final/video_upload.html">上傳介面</a>
+          <a href="https://www.instagram.com/npust.mis_30th/" target="_blank">聯絡我們IG</a>
+      </nav>
+  </div>
+  <marquee direction="right" height="30"  scrollamount="10" behavior="alternate" bgcolor="#AAAAFF">MIS系統開發 感謝您的使用</marquee>
+  
+  <div class="wrap ">
+    <div class="title">
+        <h3><b>關於智慧養殖系統</b></h3>
+        <br>
+        <p><b>智慧養殖系統<br>是作用於廠商若對魚隻數量要進行判定<br>快速便捷的管道</b></p>
+    </div>
+    <div class="group">
+
+      <div class="item ">
+          <div class="pic ">
+              <a href="https://B10756042.github.io/Final/B10756042.github.io/final/photo/password.png" target="_blank"><img src="https://B10756042.github.io/Final/B10756042.github.io/final/photo/password.png"></a>
+          </div>
+          <div class="text ">
+              <h3><a href="https://B10756042.github.io/Final/B10756042.github.io/final/login.html"><button class="button1">Hello!</a></h3>
+              <p>你登入了嗎?</p>
+          </div>
+      </div>
+
+      <div class="item ">
+          <div class="pic ">
+              <a href="https://B10756042.github.io/Final/B10756042.github.io/final/photo/fish.png" target="_blank"><img src="https://B10756042.github.io/Final/B10756042.github.io/final/photo/fish.png"></a>
+          </div>
+          <div class="text ">
+              <h3><button class="button2">Hey!</h3>
+              <p>你知道魚苗小知識嗎</p>
+          </div>
+      </div>
+
+      <div class="item ">
+          <div class="pic ">
+              <a href="https://B10756042.github.io/Final/B10756042.github.io/final/photo/video.png" target="_blank"><img src="https://B10756042.github.io/Final/B10756042.github.io/final/photo/video.png"></a>
+          </div>
+          <div class="text ">
+              <h3><button class="button3">Here!</h3>
+              <p>這裡收錄所有魚苗記錄</p>
+              
+          </div>
+      </div>
+
+      <div class="item ">
+          <div class="pic ">
+              <a href="https://B10756042.github.io/Final/B10756042.github.io/final/photo/call.jpg" target="_blank"><img src="https://B10756042.github.io/Final/B10756042.github.io/final/photo/call.jpg"></a>
+          </div>
+          <div class="text ">
+              <h3><button class="button">Q&A</button></h3>
+              <p>客服人員專區</p>
+              <i class="fas fa-cloud"></i>
+              
+          </div>
+      </div>
+
+  </div>
+
+    </div>
+   
+</body>
+
+</html>
