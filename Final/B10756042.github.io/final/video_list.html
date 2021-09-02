@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load rest_framework %}
+{%block head_title %}影片列表{% endblock %}
+{{% load static %} }
+{% block title %}影片列表{% endblock %}
+{% block content %}
+
+
+
+
+
+{% for video in videos %}
+<ul>
+    <li>id :{{ video.id }}</li>
+    <li>敘述 :{{ video.caption }}</li>
+    <li>偵測數量 :{{ video.quantity}}</li>
+    <li>儲存位置:<a href="{{ video.video.url }}" >{{ video.video.url }}</a></li>
+
+</ul>
+{% endfor %}
+
+{% endblock %}

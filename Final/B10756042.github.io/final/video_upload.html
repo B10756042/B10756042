@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load rest_framework %}
+{%block head_title %}上傳介面{% endblock %}
+{{% load static %} }
+{% block title %}上傳介面{% endblock %}
+{% block content %}
+
+<form action="{% url 'upload'%}" method="POST" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label  class="form-label">影片描述：</label>
+            <textarea class="form-control" name="caption" rows="3"></textarea>
+        </div>
+        <!-- <p>圖片描述：<input type="text" name="description"></p> -->
+        <!-- <input type="file" name="image"> -->
+        <div class="mb-3">
+            <input class="form-control" type="file" name="video" accept="video/*">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">上傳影片</button>
+        </div>
+        <!-- <button type="submit">上傳圖片</button> -->
+        <div class="col-3">
+
+              <h3><b>檔案路徑:</b></h3>
+              <a href="{{ video.video.url }}" style="font-size:x-large;">{{ video.video.url }}</a>
+            <!-- <div class="loadimg">
+                <img src="{{ url }}">
+            </div> -->
+        </div>
+        <div class="w3-text-grey videobox">
+                        <video controls="" autoplay="" name="media">
+                          <source src="{{ video.video.url }}" type="video/mp4" >
+                        </video>
+                    </div>
+
+</form>
+
+{% endblock %}
